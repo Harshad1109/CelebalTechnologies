@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>File Manager</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 30px auto;
+    }
+    h1,h2 {
+      text-align: center;
+    }
+    form {
+      margin-bottom: 30px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    input[type="file"] {
+      margin-bottom: 10px;
+    }
+    .output {
+      white-space: pre-wrap;
+      background: #f9f9f9;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>Celebal Technologies Assignment-2</h1>
+  <h2>File Manager</h2>
+
+  <form id="uploadForm" enctype="multipart/form-data" method="POST" action="/upload">
+    <h3>Upload File</h3>
+    <input type="file" name="file" required />
+    <button type="submit">Upload</button>
+  </form>
+
+  <form id="readForm" enctype="multipart/form-data" method="POST" action="/read">
+    <h3>Read File</h3>
+    <input type="file" name="file" required />
+    <button type="submit">Read</button>
+  </form>
+
+  <form id="deleteForm" enctype="multipart/form-data" method="POST" action="/delete">
+    <h3>Delete File</h3>
+    <input type="file" name="file" required />
+    <button type="submit">Delete</button>
+  </form>
+
+  <div class="output" id="output"></div>
+
+  <script>
+    const forms = ['uploadForm', 'readForm', 'deleteForm'];
+
+    forms.forEach(formId => {
+      const form = document.getElementById(formId);
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const action = form.getAttribute('action');
+
+        fetch(action, {
+          method: 'POST',
+          body: formData
+        })
+        .then(res => res.text())
+        .then(text => {
+          document.getElementById('output').textContent = text;
+        })
+        .catch(err => {
+          document.getElementById('output').textContent = 'Error: ' + err.message;
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
