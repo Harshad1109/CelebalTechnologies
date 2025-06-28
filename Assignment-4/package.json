@@ -1,0 +1,16 @@
+{
+  "name": "assignment-4",
+  "version": "1.0.0",
+  "description": "my-express-app-Assignment-4",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "harshad",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0",
+    "pug": "^3.0.3"
+  }
+}
