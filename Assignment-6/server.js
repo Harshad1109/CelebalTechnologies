@@ -11,7 +11,7 @@ const port = 3000;
 app.use(bodyParser.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/rest_api_example', {
+mongoose.connect('mongodb://127.0.0.1:27017/restapiexample', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     
